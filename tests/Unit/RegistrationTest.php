@@ -13,6 +13,12 @@ class RegistrationTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function register_form_exists_on_correct_page()
+    {
+        $this->get('/register')->assertSeeLivewire('auth.register');
+    }
+
+    /** @test */
     public function can_register()
     {
         $email = 'test@gmail.com';
