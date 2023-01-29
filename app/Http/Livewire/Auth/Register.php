@@ -25,7 +25,7 @@ class Register extends Component
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|same:passwordConfirmation',
         ]);
-        
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
