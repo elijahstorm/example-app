@@ -82,6 +82,25 @@ class RegistrationTest extends TestCase
     }
 
     /** @test */
+    public function email_is_taken_report()
+    {
+        User::create([
+            'name' => 'name',
+            'email' => 'first@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
+
+        Livewire::test('auth.register')
+            ->set('email', 'second@gmail.com')
+            ->assertHasNoErrors()
+            ->set('email', 'first@gmail.com')
+            ->assertHasErrors()
+            ->set('email', 'second@gmail.com')
+            ->assertHasNoErrors()
+        ;
+    }
+
+    /** @test */
     public function password_is_required()
     {
         Livewire::test('auth.register')
