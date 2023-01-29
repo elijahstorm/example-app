@@ -1,5 +1,5 @@
 <form wire:submit.prevent="register">
-    <div>
+    <div class="bg-red-200 p-11">
         <label for="name">name</label>
         <input wire:model.lazy="name" type="text" id="name" name="name" />
         @error('name') <span>{{ $message }}</span> @enderror
