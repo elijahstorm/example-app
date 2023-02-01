@@ -1,7 +1,8 @@
 {
     "private": true,
     "scripts": {
-        "dev": "vite",
+        "dev": "artisan serve & pnpm vite-dev",
+        "vite-dev": "vite",
         "build": "vite build"
     },
     "devDependencies": {
