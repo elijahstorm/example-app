@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::get('/register', App\Http\Livewire\auth\register::class);
+Route::get('/login', App\Http\Livewire\auth\login::class);

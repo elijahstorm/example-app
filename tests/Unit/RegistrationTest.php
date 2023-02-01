@@ -22,16 +22,15 @@ class RegistrationTest extends TestCase
     public function can_register()
     {
         $email = 'test@gmail.com';
-        
+
         Livewire::test('auth.register')
             ->set('name', 'name')
             ->set('email', $email)
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'secret')
             ->call('register')
-            ->assertRedirect('/')
-        ;
-        
+            ->assertRedirect('/profile');
+
         $this->assertTrue(User::whereEmail($email)->exists());
 
         $this->assertEquals($email, auth()->user()->email);
@@ -45,8 +44,7 @@ class RegistrationTest extends TestCase
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'secret')
             ->call('register')
-            ->assertHasErrors(['email' => 'required'])
-        ;
+            ->assertHasErrors(['email' => 'required']);
     }
 
     /** @test */
@@ -58,8 +56,7 @@ class RegistrationTest extends TestCase
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'secret')
             ->call('register')
-            ->assertHasErrors(['email' => 'email'])
-        ;
+            ->assertHasErrors(['email' => 'email']);
     }
 
     /** @test */
@@ -77,8 +74,7 @@ class RegistrationTest extends TestCase
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'secret')
             ->call('register')
-            ->assertHasErrors(['email' => 'unique'])
-        ;
+            ->assertHasErrors(['email' => 'unique']);
     }
 
     /** @test */
@@ -96,8 +92,7 @@ class RegistrationTest extends TestCase
             ->set('email', 'first@gmail.com')
             ->assertHasErrors()
             ->set('email', 'second@gmail.com')
-            ->assertHasNoErrors()
-        ;
+            ->assertHasNoErrors();
     }
 
     /** @test */
@@ -109,8 +104,7 @@ class RegistrationTest extends TestCase
             ->set('password', '')
             ->set('passwordConfirmation', 'secret')
             ->call('register')
-            ->assertHasErrors(['password' => 'required'])
-        ;
+            ->assertHasErrors(['password' => 'required']);
     }
 
     /** @test */
@@ -122,8 +116,7 @@ class RegistrationTest extends TestCase
             ->set('password', 'sec')
             ->set('passwordConfirmation', 'secret')
             ->call('register')
-            ->assertHasErrors(['password' => 'min'])
-        ;
+            ->assertHasErrors(['password' => 'min']);
     }
 
     /** @test */
@@ -135,7 +128,6 @@ class RegistrationTest extends TestCase
             ->set('password', 'sec')
             ->set('passwordConfirmation', 'secret')
             ->call('register')
-            ->assertHasErrors(['password' => 'same'])
-        ;
+            ->assertHasErrors(['password' => 'same']);
     }
 }
