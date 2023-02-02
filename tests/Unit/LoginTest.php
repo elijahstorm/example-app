@@ -39,4 +39,24 @@ class LoginTest extends TestCase
 
         $this->assertEquals($email, auth()->user()->email);
     }
+
+    /** @test */
+    public function fails_when_provided_bad_credientials()
+    {
+        $email = 'test@gmail.com';
+        $password = 'password';
+
+        User::create([
+            'name' => 'name',
+            'email' => $email,
+            'password' => Hash::make($password),
+        ]);
+
+        Livewire::test('auth.login')
+            ->set('email', $email)
+            ->set('password', 'different_password')
+            ->call('login');
+
+        $this->assertEquals(null, auth()->user());
+    }
 }

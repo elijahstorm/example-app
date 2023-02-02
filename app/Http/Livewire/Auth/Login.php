@@ -23,8 +23,8 @@ class Login extends Component
 
         if (!Auth::attempt(
             [
-                'email' => $this->email,
-                'password' => $this->password
+                'email' => $data['email'],
+                'password' => $data['password']
             ]
         )) {
             session()->flash('error', 'email and password are wrong.');

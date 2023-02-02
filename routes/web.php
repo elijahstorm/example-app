@@ -2,20 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::redirect('/', '/dashboard');
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', App\Http\Livewire\profile\profile::class);
+    Route::get('/dashboard', App\Http\Livewire\profile\dashboard::class);
 });
 
-Route::get('/register', App\Http\Livewire\auth\register::class);
-Route::get('/login', App\Http\Livewire\auth\login::class);
+Route::middleware('guest')->group(function () {
+    Route::get('/register', App\Http\Livewire\auth\register::class);
+    Route::get('/login', App\Http\Livewire\auth\login::class)->name('login');
+});
