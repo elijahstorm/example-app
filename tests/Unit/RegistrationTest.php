@@ -96,6 +96,18 @@ class RegistrationTest extends TestCase
     }
 
     /** @test */
+    public function name_is_not_longer_than_24_characters()
+    {
+        Livewire::test('auth.register')
+            ->set('name', str_repeat('n', 25))
+            ->set('email', 'first@gmail.com')
+            ->set('password', 'secret')
+            ->set('passwordConfirmation', 'secret')
+            ->call('register')
+            ->assertHasErrors(['name' => 'max']);
+    }
+
+    /** @test */
     public function password_is_required()
     {
         Livewire::test('auth.register')

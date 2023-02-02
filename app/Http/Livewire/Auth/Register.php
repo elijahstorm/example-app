@@ -21,7 +21,7 @@ class Register extends Component
     public function register()
     {
         $data = $this->validate([
-            'name' => 'required',
+            'name' => 'required|max:24',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|same:passwordConfirmation',
         ]);
