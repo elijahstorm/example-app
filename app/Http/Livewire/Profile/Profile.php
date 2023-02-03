@@ -21,6 +21,11 @@ class Profile extends Component
         // $this->photo = auth()->user()->photo;
     }
 
+    public function updating()
+    {
+        $this->saved = false;
+    }
+
     public function save()
     {
         $this->saved = false;

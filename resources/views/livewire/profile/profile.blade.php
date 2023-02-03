@@ -22,7 +22,7 @@
 
                             <div>
                                 @if ($saved)
-                                <div class="bg-green-200 border border-green-500 text-green-500 px-4 py-2">
+                                <div wire:click="$set('saved', false)" class="bg-green-200 border border-green-500 text-green-500 px-4 py-2 cursor-pointer">
                                     <p>Profile saved</p>
                                 </div>
                                 @endif
