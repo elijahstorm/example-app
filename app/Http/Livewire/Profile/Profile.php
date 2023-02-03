@@ -9,6 +9,7 @@ class Profile extends Component
 {
     public $name = '';
     public $about = '';
+    public $email = '';
 
     public function save()
     {
