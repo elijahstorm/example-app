@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <!-- @livewireStyles -->
+    @livewireStyles
     @vite('resources/css/app.css')
 </head>
 

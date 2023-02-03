@@ -64,4 +64,40 @@ class ProfileTest extends TestCase
             ->call('save')
             ->assertHasErrors('about', 'max');
     }
+
+    /** @test */
+    public function profile_data_shows_when_profile_viewed()
+    {
+        $user = User::factory()->create([
+            'name' => 'foo',
+            'about' => 'bar',
+            'email' => 'car',
+            // 'photo' => 'zar',
+        ]);
+
+        Livewire::actingAs($user)
+            ->test('profile.profile')
+            ->assertSet('name', 'foo')
+            ->assertSet('about', 'bar')
+            ->assertSet('email', 'car')
+            // ->assertSet('photo', 'zar')
+        ;
+    }
+
+    /** @test */
+    public function message_is_shown_on_save()
+    {
+        $user = User::factory()->create([
+            'name' => 'foo',
+            'about' => 'bar',
+            'email' => 'car@gmail.com',
+            // 'photo' => 'zar',
+        ]);
+
+        Livewire::actingAs($user)
+            ->test('profile.profile')
+            ->assertDontSee('Profile saved')
+            ->call('save')
+            ->assertSee('Profile saved');
+    }
 }
