@@ -39,6 +39,7 @@ class Profile extends Component
 
         auth()->user()->update($profileData);
 
+        $this->dispatchBrowserEvent('notify');
         $this->saved = true;
     }
 

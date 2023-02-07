@@ -1,3 +1,7 @@
+@extends('layouts.base')
+
+<!-- alpine -->
+@section('content')
 <div class="mx-4 mt-8 mb-16">
     <div class="md:grid md:grid-cols-3 md:gap-6">
         <div class="md:col-span-1">
@@ -78,3 +82,5 @@
             </form>
         </div>
     </div>
+</div>
+@endsection
