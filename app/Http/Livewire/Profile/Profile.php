@@ -7,7 +7,6 @@ use Livewire\Component;
 
 class Profile extends Component
 {
-    public $saved = false;
     public $name = '';
     public $about = '';
     public $email = '';
@@ -21,15 +20,8 @@ class Profile extends Component
         // $this->photo = auth()->user()->photo;
     }
 
-    public function updating()
-    {
-        $this->saved = false;
-    }
-
     public function save()
     {
-        $this->saved = false;
-
         $profileData = $this->validate([
             'name' => 'required|max:24',
             'about' => 'max:140',
@@ -39,8 +31,7 @@ class Profile extends Component
 
         auth()->user()->update($profileData);
 
-        $this->dispatchBrowserEvent('notify');
-        $this->saved = true;
+        session()->flash('notify-saved');
     }
 
     public function render()

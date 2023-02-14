@@ -35,14 +35,17 @@
 
     <div class="border-t border-indigo-200 px-4 py-4">
         <div class="flex justify-between items-center gap-2">
-            <button class="rounded-full bg-white w-10 h-10">
-                &nbsp;
-            </button>
 
-            <p class="flex-1 text-white overflow-clip text-ellipsis">
-                {{ $name ?? 'Welcome' }}
-            </p>
-            <!-- <p class="flex-1 text-white overflow-clip text-ellipsis">Name that is really really really really really long</p> -->
+            <a class="rounded-full bg-white w-10 h-10" href="/profile">
+                &nbsp;
+            </a>
+
+            <a class="contents" href="/profile">
+                <p class="flex-1 text-white whitespace-nowrap overflow-hidden text-ellipsis">
+                    {{ $name ?? 'Welcome' }}
+                </p>
+                <!-- <p class="flex-1 text-white overflow-clip text-ellipsis">Name that is really really really really really long</p> -->
+            </a>
 
             <button class="rounded-full bg-white w-10 h-10 ml-2">
                 &nbsp;

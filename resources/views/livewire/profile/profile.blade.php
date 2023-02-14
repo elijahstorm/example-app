@@ -17,17 +17,11 @@
                 <div class="shadow sm:overflow-hidden sm:rounded-md">
                     <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
                         <div>
-                            @if (session()->has('error'))
-                            <div class="bg-red-200 border border-red-500 text-red-500 px-4 py-2">
-                                {{ session('error') }}
-                                </p>
-                                @endif
-                            </div>
-
                             <div>
-                                @if ($saved)
-                                <div wire:click="$set('saved', false)" class="bg-green-200 border border-green-500 text-green-500 px-4 py-2 cursor-pointer">
-                                    <p>Profile saved</p>
+                                @if (session()->has('error'))
+                                <div class="bg-red-200 border border-red-500 text-red-500 px-4 py-2">
+                                    {{ session('error') }}
+                                    </p>
                                 </div>
                                 @endif
                             </div>
@@ -75,7 +69,17 @@
                             </div>
                         </div>
 
-                        <div class="bg-bl-50 px-4 py-3 text-right sm:px-6">
+                        <div class="bg-bl-50 px-4 py-3 text-right sm:px-6 space-x-3">
+                            <div class="contents">
+                                @if (session()->has('notify-saved'))
+                                <span class="inline text-indigo-500">
+                                    Saved!
+                                </span>
+                                @endif
+                            </div>
+
+                            <a href="/profile" class="inline-flex justify-center rounded-md border border-gray-300 py-2 px-4 text-sm font-medium text-black shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2">Cancel</a>
+
                             <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
                         </div>
                     </div>
